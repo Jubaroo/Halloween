@@ -34,24 +34,17 @@ public class CreatureLoot {
             //if (item.getRarity() == 3) {
             //    rarity = "fantastic";
             //}
+            //Communicator comm = creature.getCommunicator();
+            //final Player player = comm.getPlayer();
             Item inv = creature.getInventory();
-            Communicator comm = creature.getCommunicator();
-            final Player player = comm.getPlayer();
             int templateId = creature.getTemplate().getTemplateId();
             // Shared message
-            // String message =  String.format("You find a %s %s!", rarity, item.getName().toLowerCase());
+            //String message =  String.format("You find a %s %s!", rarity, item.getName().toLowerCase());
             // Shared items
             Item rareBone = ItemFactory.createItem(ItemList.boneCollar, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_BONE, (byte) (Server.rand.nextInt(3)+ 1), null);
             Item shouldersPumpkin = ItemFactory.createItem(ItemList.shoulderPumpkinHalloween, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
-            Item maskPale = ItemFactory.createItem(ItemList.maskPale, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_POTTERY, (byte) (Server.rand.nextInt(3)), null);
-            Item maskEnlightended = ItemFactory.createItem(ItemList.maskEnlightended, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
-            Item maskRavager = ItemFactory.createItem(ItemList.maskRavager, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
-            Item maskShadow = ItemFactory.createItem(ItemList.maskShadow, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
-            Item maskChallenge = ItemFactory.createItem(ItemList.maskChallenge, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_SILVER, (byte) (Server.rand.nextInt(3)), null);
-            Item maskIsles = ItemFactory.createItem(ItemList.maskIsles, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_POTTERY, (byte) (Server.rand.nextInt(3)), null);
-            Item maskOfTheReturner = ItemFactory.createItem(ItemList.maskOfTheReturner, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
-            Item midsummerMask = ItemFactory.createItem(ItemList.midsummerMask, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_POTTERY, (byte) (Server.rand.nextInt(3)), null);
             Item maskTrollHalloween = ItemFactory.createItem(ItemList.maskTrollHalloween, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
+            Item candy = ItemFactory.createItem(ItemList.sweet, 10.0f + (Server.rand.nextFloat() * 89.9f), Materials.MATERIAL_VEGETARIAN, (byte) (Server.rand.nextInt(3)), null);
 
             if (templateId == ScaryPumpkin.templateId) {
                 if (Constants.partsPumpkinRollToggle) {
@@ -60,6 +53,7 @@ public class CreatureLoot {
                         case 0:
                             Item pumpkin = ItemFactory.createItem(ItemList.pumpkin, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
                             inv.insertItem(pumpkin, true);
+                            inv.insertItem(candy, true);
                             //comm.sendNormalServerMessage(message);
                             break;
                         case 1:
@@ -69,11 +63,13 @@ public class CreatureLoot {
                             inv.insertItem(seedPumpkin, true);
                             inv.insertItem(seedPumpkin, true);
                             inv.insertItem(seedPumpkin, true);
+                            inv.insertItem(candy, true);
                             //comm.sendNormalServerMessage(message);
                             break;
                         case 2:
                             Item carvedPumpkin = ItemFactory.createItem(ItemList.pumpkinHalloween, 20.0f + ((79.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
                             inv.insertItem(carvedPumpkin, true);
+                            inv.insertItem(candy, true);
                             //comm.sendNormalServerMessage(message);
                             break;
                     }
@@ -103,39 +99,7 @@ public class CreatureLoot {
                     int masksPumpkinRoll = Server.rand.nextInt(Constants.masksPumpkinRollBound) + 1;
                     switch (masksPumpkinRoll) {
                         case 0:
-                            inv.insertItem(maskChallenge, true);
-                            //comm.sendNormalServerMessage(message);
-                            break;
-                        case 1:
-                            inv.insertItem(maskEnlightended, true);
-                            //comm.sendNormalServerMessage(message);
-                            break;
-                        case 2:
-                            inv.insertItem(maskIsles, true);
-                            //comm.sendNormalServerMessage(message);
-                            break;
-                        case 3:
-                            inv.insertItem(maskOfTheReturner, true);
-                            //comm.sendNormalServerMessage(message);
-                            break;
-                        case 4:
-                            inv.insertItem(maskPale, true);
-                            //comm.sendNormalServerMessage(message);
-                            break;
-                        case 5:
-                            inv.insertItem(maskRavager, true);
-                            //comm.sendNormalServerMessage(message);
-                            break;
-                        case 6:
-                            inv.insertItem(maskShadow, true);
-                            //comm.sendNormalServerMessage(message);
-                            break;
-                        case 7:
                             inv.insertItem(maskTrollHalloween, true);
-                            //comm.sendNormalServerMessage(message);
-                            break;
-                        case 8:
-                            inv.insertItem(midsummerMask, true);
                             //comm.sendNormalServerMessage(message);
                             break;
                     }
@@ -152,6 +116,7 @@ public class CreatureLoot {
                             inv.insertItem(branch, true);
                             inv.insertItem(branch, true);
                             inv.insertItem(branch, true);
+                            inv.insertItem(candy, true);
                             //comm.sendNormalServerMessage(message);
                             break;
                         case 1:
@@ -161,11 +126,13 @@ public class CreatureLoot {
                             inv.insertItem(log, true);
                             inv.insertItem(log, true);
                             inv.insertItem(log, true);
+                            inv.insertItem(candy, true);
                             //comm.sendNormalServerMessage(message);
                             break;
                         case 2:
                             Item acorn = ItemFactory.createItem(ItemList.acorn, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
                             inv.insertItem(acorn, true);
+                            inv.insertItem(candy, true);
                             //comm.sendNormalServerMessage(message);
                             break;
                     }
