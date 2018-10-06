@@ -24,7 +24,6 @@ class Constants {
     static boolean shouldersTreeRollToggle;
     static boolean masksPumpkinRollToggle;
     static boolean masksTreeRollToggle;
-
     static {
         logger = Logger.getLogger(Constants.class.getName());
         success = false;

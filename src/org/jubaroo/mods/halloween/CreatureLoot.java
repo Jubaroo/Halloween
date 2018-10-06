@@ -2,13 +2,11 @@
 package org.jubaroo.mods.halloween;
 
 import com.wurmonline.server.Server;
-import com.wurmonline.server.creatures.Communicator;
 import com.wurmonline.server.creatures.Creature;
 import com.wurmonline.server.items.Item;
 import com.wurmonline.server.items.ItemFactory;
 import com.wurmonline.server.items.ItemList;
 import com.wurmonline.server.items.Materials;
-import com.wurmonline.server.players.Player;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -48,7 +46,7 @@ public class CreatureLoot {
 
             if (templateId == ScaryPumpkin.templateId) {
                 if (Constants.partsPumpkinRollToggle) {
-                    int partsPumpkinRoll = Server.rand.nextInt(Constants.partsPumpkinRollBound) + 1;
+                    int partsPumpkinRoll = Server.rand.nextInt(Constants.partsPumpkinRollBound);
                     switch (partsPumpkinRoll) {
                         case 0:
                             Item pumpkin = ItemFactory.createItem(ItemList.pumpkin, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
@@ -76,7 +74,7 @@ public class CreatureLoot {
                 }
 
                 if (Constants.bonePumpkinRollToggle) {
-                    int bonePumpkinRoll = Server.rand.nextInt(Constants.bonePumpkinRollBound) + 1;
+                    int bonePumpkinRoll = Server.rand.nextInt(Constants.bonePumpkinRollBound);
                     switch (bonePumpkinRoll) {
                         case 0:
                             inv.insertItem(rareBone, true);
@@ -86,7 +84,7 @@ public class CreatureLoot {
                 }
 
                 if (Constants.shouldersPumpkinRollToggle) {
-                    int shouldersPumpkinRoll = Server.rand.nextInt(Constants.shouldersPumpkinRollBound) + 1;
+                    int shouldersPumpkinRoll = Server.rand.nextInt(Constants.shouldersPumpkinRollBound);
                     switch (shouldersPumpkinRoll) {
                         case 0:
                             inv.insertItem(shouldersPumpkin, true);
@@ -96,7 +94,7 @@ public class CreatureLoot {
                 }
 
                 if (Constants.masksPumpkinRollToggle) {
-                    int masksPumpkinRoll = Server.rand.nextInt(Constants.masksPumpkinRollBound) + 1;
+                    int masksPumpkinRoll = Server.rand.nextInt(Constants.masksPumpkinRollBound);
                     switch (masksPumpkinRoll) {
                         case 0:
                             inv.insertItem(maskTrollHalloween, true);
@@ -109,7 +107,7 @@ public class CreatureLoot {
 
             else if (templateId == OminousTree.templateId) {
                 if (Constants.partsTreeRollToggle) {
-                    int partsTreeRoll = Server.rand.nextInt(Constants.partsTreeRollBound) + 1;
+                    int partsTreeRoll = Server.rand.nextInt(Constants.partsTreeRollBound);
                     switch (partsTreeRoll) {
                         case 0:
                             Item branch = ItemFactory.createItem(ItemList.branch, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_WOOD_BIRCH, (byte) 0, null);
@@ -139,7 +137,7 @@ public class CreatureLoot {
                 }
 
                 if (Constants.boneTreeRollToggle) {
-                    int boneTreeRoll = Server.rand.nextInt(Constants.boneTreeRollBound) + 1;
+                    int boneTreeRoll = Server.rand.nextInt(Constants.boneTreeRollBound);
                     switch (boneTreeRoll) {
                         case 0:
                             inv.insertItem(rareBone, true);
@@ -149,7 +147,7 @@ public class CreatureLoot {
                 }
 
                 if (Constants.shouldersTreeRollToggle) {
-                    int shouldersTreeRoll = Server.rand.nextInt(Constants.shouldersTreeRollBound) + 1;
+                    int shouldersTreeRoll = Server.rand.nextInt(Constants.shouldersTreeRollBound);
                     switch (shouldersTreeRoll) {
                         case 0:
                             inv.insertItem(shouldersPumpkin, true);
@@ -159,7 +157,7 @@ public class CreatureLoot {
                 }
 
                 if (Constants.masksTreeRollToggle) {
-                    int masksTreeRoll = Server.rand.nextInt(Constants.masksTreeRollBound) + 1;
+                    int masksTreeRoll = Server.rand.nextInt(Constants.masksTreeRollBound);
                     switch (masksTreeRoll) {
                         case 0:
                             inv.insertItem(maskTrollHalloween, true);
@@ -181,7 +179,6 @@ public class CreatureLoot {
             final Class<CreatureLoot> thisClass = CreatureLoot.class;
             String replace;
 
-            Utility.setReason("Disable sacrificing strong creatures.");
             CtClass ctCreature = classPool.get("com.wurmonline.server.creatures.Creature");
             Utility.setReason("Set custom corpse sizes.");
             replace = "$_ = $proceed($$);"
@@ -219,7 +216,6 @@ public class CreatureLoot {
             };
             String desc = Descriptor.ofMethod(ctCreature, params);
 
-            // Modify new creatures
             replace = "$_ = $proceed($$);"
                     + CreatureLoot.class.getName()+".modifyNewCreature($1);";
             Utility.instrumentDescribed(thisClass, ctCreature, "doNew", desc, "sendToWorld", replace);
