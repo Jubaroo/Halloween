@@ -42,6 +42,7 @@ public class Initiator implements WurmServerMod, Configurable, PreInitable, Init
         Constants.masksPumpkinRollToggle = Boolean.valueOf(properties.getProperty("Pumpkin_Masks_Drop", String.valueOf(Constants.masksPumpkinRollToggle)));
         Constants.masksTreeRollToggle = Boolean.valueOf(properties.getProperty("Tree_Masks_Drop", String.valueOf(Constants.masksTreeRollToggle)));
         Constants.candyOnMonsters = Boolean.valueOf(properties.getProperty("Candy_On_Monsters", String.valueOf(Constants.candyOnMonsters)));
+        Constants.candyOnUndead = Boolean.valueOf(properties.getProperty("Candy_On_Undead", String.valueOf(Constants.candyOnUndead)));
         Constants.settingsOutput = Boolean.valueOf(properties.getProperty("Output_Settings_To_Log", String.valueOf(Constants.settingsOutput)));
 
         if (Constants.settingsOutput) {
@@ -63,6 +64,8 @@ public class Initiator implements WurmServerMod, Configurable, PreInitable, Init
             if (!Constants.masksTreeRollToggle) { Constants.logger.log(Level.INFO,"Tree masks drop: Disabled"); }
             if (Constants.candyOnMonsters) { Constants.logger.log(Level.INFO,"All Monsters Drop Candy: Enabled"); }
             if (!Constants.candyOnMonsters) { Constants.logger.log(Level.INFO,"All Monsters Drop Candy: Disabled"); }
+            if (Constants.candyOnUndead) { Constants.logger.log(Level.INFO,"All Undead Drop Candy: Enabled"); }
+            if (!Constants.candyOnUndead) { Constants.logger.log(Level.INFO,"All Undead Drop Candy: Disabled"); }
             if (Constants.settingsOutput) { Constants.logger.log(Level.INFO,"Output settings to log: Enabled"); }
             if (!Constants.settingsOutput) { Constants.logger.log(Level.INFO,"Output settings to log: Disabled"); }
             Constants.logger.log(Level.INFO,"Odds for pumpkins to drop pumpkin parts: 3 in " + Constants.partsPumpkinRollBound);

@@ -28,7 +28,6 @@ public class CreatureLoot {
             Item shouldersPumpkin = ItemFactory.createItem(ItemList.shoulderPumpkinHalloween, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
             Item maskTrollHalloween = ItemFactory.createItem(ItemList.maskTrollHalloween, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
             Item candy = ItemFactory.createItem(ItemList.sweet, 10.0f + (Server.rand.nextFloat() * 89.9f), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
-
             if (templateId == ScaryPumpkin.templateId) {
                 if (Constants.partsPumpkinRollToggle) {
                     int partsPumpkinRoll = Server.rand.nextInt(Constants.partsPumpkinRollBound);
@@ -56,7 +55,6 @@ public class CreatureLoot {
                             break;
                     }
                 }
-
                 if (Constants.bonePumpkinRollToggle) {
                     int bonePumpkinRoll = Server.rand.nextInt(Constants.bonePumpkinRollBound);
                     switch (bonePumpkinRoll) {
@@ -65,7 +63,6 @@ public class CreatureLoot {
                             break;
                     }
                 }
-
                 if (Constants.shouldersPumpkinRollToggle) {
                     int shouldersPumpkinRoll = Server.rand.nextInt(Constants.shouldersPumpkinRollBound);
                     switch (shouldersPumpkinRoll) {
@@ -74,7 +71,6 @@ public class CreatureLoot {
                             break;
                     }
                 }
-
                 if (Constants.masksPumpkinRollToggle) {
                     int masksPumpkinRoll = Server.rand.nextInt(Constants.masksPumpkinRollBound);
                     switch (masksPumpkinRoll) {
@@ -85,7 +81,6 @@ public class CreatureLoot {
                 }
 
             }
-
             else if (templateId == OminousTree.templateId) {
                 if (Constants.partsTreeRollToggle) {
                     int partsTreeRoll = Server.rand.nextInt(Constants.partsTreeRollBound);
@@ -113,7 +108,6 @@ public class CreatureLoot {
                             break;
                     }
                 }
-
                 if (Constants.boneTreeRollToggle) {
                     int boneTreeRoll = Server.rand.nextInt(Constants.boneTreeRollBound);
                     switch (boneTreeRoll) {
@@ -122,7 +116,6 @@ public class CreatureLoot {
                             break;
                     }
                 }
-
                 if (Constants.shouldersTreeRollToggle) {
                     int shouldersTreeRoll = Server.rand.nextInt(Constants.shouldersTreeRollBound);
                     switch (shouldersTreeRoll) {
@@ -131,7 +124,6 @@ public class CreatureLoot {
                             break;
                     }
                 }
-
                 if (Constants.masksTreeRollToggle) {
                     int masksTreeRoll = Server.rand.nextInt(Constants.masksTreeRollBound);
                     switch (masksTreeRoll) {
@@ -142,19 +134,16 @@ public class CreatureLoot {
                 }
 
             }
-
             else if (Constants.candyOnMonsters) {
                 if (creature.isMonster()) {
                     inv.insertItem(candy, true);
                 }
             }
-
             else if (Constants.candyOnUndead) {
                 if (creature.isUndead()) {
                     inv.insertItem(candy, true);
                 }
             }
-
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -182,9 +171,7 @@ public class CreatureLoot {
         try {
             ClassPool classPool = HookManager.getInstance().getClassPool();
             final Class<CreatureLoot> thisClass = CreatureLoot.class;
-
             CtClass ctCreature = classPool.get("com.wurmonline.server.creatures.Creature");
-
             String replace;
             CtClass[] params = {
                     CtClass.intType,
@@ -202,15 +189,12 @@ public class CreatureLoot {
                     CtClass.intType
             };
             String desc = Descriptor.ofMethod(ctCreature, params);
-
             replace = "$_ = $proceed($$);"
                     + CreatureLoot.class.getName()+".modifyNewCreature($1);";
             Utility.instrumentDescribed(thisClass, ctCreature, "doNew", desc, "sendToWorld", replace);
-
         }
         catch (NotFoundException e) {
             throw new HookException(e);
         }
     }
-
 }
