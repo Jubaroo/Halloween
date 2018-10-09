@@ -137,7 +137,7 @@ public class Initiator implements WurmServerMod, Configurable, PreInitable, Init
     }
 
     public String getVersion() {
-        return "v1.0";
+        return "v1.1";
     }
 
 }
