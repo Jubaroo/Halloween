@@ -23,7 +23,6 @@ public class CreatureLoot {
         try{
             Item inv = creature.getInventory();
             int templateId = creature.getTemplate().getTemplateId();
-            // Shared items
             Item rareBone = ItemFactory.createItem(ItemList.boneCollar, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_BONE, (byte) (Server.rand.nextInt(3)+ 1), null);
             Item shouldersPumpkin = ItemFactory.createItem(ItemList.shoulderPumpkinHalloween, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
             Item maskTrollHalloween = ItemFactory.createItem(ItemList.maskTrollHalloween, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
@@ -36,7 +35,6 @@ public class CreatureLoot {
                             Item pumpkin = ItemFactory.createItem(ItemList.pumpkin, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
                             inv.insertItem(pumpkin, true);
                             inv.insertItem(candy, true);
-                            
                             break;
                         case 1:
                             Item seedPumpkin = ItemFactory.createItem(ItemList.pumpkinSeed, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
@@ -51,7 +49,6 @@ public class CreatureLoot {
                             Item carvedPumpkin = ItemFactory.createItem(ItemList.pumpkinHalloween, 20.0f + ((79.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
                             inv.insertItem(carvedPumpkin, true);
                             inv.insertItem(candy, true);
-                            
                             break;
                     }
                 }
@@ -197,4 +194,5 @@ public class CreatureLoot {
             throw new HookException(e);
         }
     }
+
 }

@@ -44,7 +44,6 @@ public class Initiator implements WurmServerMod, Configurable, PreInitable, Init
         Constants.candyOnMonsters = Boolean.valueOf(properties.getProperty("Candy_On_Monsters", String.valueOf(Constants.candyOnMonsters)));
         Constants.candyOnUndead = Boolean.valueOf(properties.getProperty("Candy_On_Undead", String.valueOf(Constants.candyOnUndead)));
         Constants.settingsOutput = Boolean.valueOf(properties.getProperty("Output_Settings_To_Log", String.valueOf(Constants.settingsOutput)));
-
         if (Constants.settingsOutput) {
             if (Constants.partsPumpkinRollToggle) { Constants.logger.log(Level.INFO,"Pumpkin Part drops: Enabled"); }
             if (!Constants.partsPumpkinRollToggle) { Constants.logger.log(Level.INFO,"Pumpkin Part drops: Disabled"); }
@@ -120,7 +119,7 @@ public class Initiator implements WurmServerMod, Configurable, PreInitable, Init
         boolean sendStatus = false;
         int size = 50000;
         if(templateId == OminousTree.templateId){
-            size *= 10.0;
+            size *= 100.0;
             corpse.setSizes(size);
             sendStatus = true;
         }else{
@@ -136,7 +135,6 @@ public class Initiator implements WurmServerMod, Configurable, PreInitable, Init
             }
         }
     }
-
 
     public String getVersion() {
         return "v1.0";
