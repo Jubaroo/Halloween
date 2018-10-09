@@ -41,7 +41,9 @@ public class Initiator implements WurmServerMod, Configurable, PreInitable, Init
         Constants.shouldersTreeRollToggle = Boolean.valueOf(properties.getProperty("Tree_Pumpkin_Shoulders_Drop", String.valueOf(Constants.shouldersTreeRollToggle)));
         Constants.masksPumpkinRollToggle = Boolean.valueOf(properties.getProperty("Pumpkin_Masks_Drop", String.valueOf(Constants.masksPumpkinRollToggle)));
         Constants.masksTreeRollToggle = Boolean.valueOf(properties.getProperty("Tree_Masks_Drop", String.valueOf(Constants.masksTreeRollToggle)));
+        Constants.candyOnMonsters = Boolean.valueOf(properties.getProperty("Candy_On_Monsters", String.valueOf(Constants.candyOnMonsters)));
         Constants.settingsOutput = Boolean.valueOf(properties.getProperty("Output_Settings_To_Log", String.valueOf(Constants.settingsOutput)));
+
         if (Constants.settingsOutput) {
             if (Constants.partsPumpkinRollToggle) { Constants.logger.log(Level.INFO,"Pumpkin Part drops: Enabled"); }
             if (!Constants.partsPumpkinRollToggle) { Constants.logger.log(Level.INFO,"Pumpkin Part drops: Disabled"); }
@@ -59,6 +61,8 @@ public class Initiator implements WurmServerMod, Configurable, PreInitable, Init
             if (!Constants.masksPumpkinRollToggle) { Constants.logger.log(Level.INFO,"Pumpkin masks drop: Disabled"); }
             if (Constants.masksTreeRollToggle) { Constants.logger.log(Level.INFO,"Tree masks drop: Enabled"); }
             if (!Constants.masksTreeRollToggle) { Constants.logger.log(Level.INFO,"Tree masks drop: Disabled"); }
+            if (Constants.candyOnMonsters) { Constants.logger.log(Level.INFO,"All Monsters Drop Candy: Enabled"); }
+            if (!Constants.candyOnMonsters) { Constants.logger.log(Level.INFO,"All Monsters Drop Candy: Disabled"); }
             if (Constants.settingsOutput) { Constants.logger.log(Level.INFO,"Output settings to log: Enabled"); }
             if (!Constants.settingsOutput) { Constants.logger.log(Level.INFO,"Output settings to log: Disabled"); }
             Constants.logger.log(Level.INFO,"Odds for pumpkins to drop pumpkin parts: 3 in " + Constants.partsPumpkinRollBound);

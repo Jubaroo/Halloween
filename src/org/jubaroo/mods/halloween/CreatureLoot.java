@@ -21,28 +21,13 @@ public class CreatureLoot {
 
     public static void modifyNewCreature(Creature creature){
         try{
-            // Rarity to string
-            //String rarity = "";
-            //if (item.getRarity() == 1) {
-            //    rarity = "rare";
-            //}
-            //if (item.getRarity() == 2) {
-            //    rarity = "supreme";
-            //}
-            //if (item.getRarity() == 3) {
-            //    rarity = "fantastic";
-            //}
-            //Communicator comm = creature.getCommunicator();
-            //final Player player = comm.getPlayer();
             Item inv = creature.getInventory();
             int templateId = creature.getTemplate().getTemplateId();
-            // Shared message
-            //String message =  String.format("You find a %s %s!", rarity, item.getName().toLowerCase());
             // Shared items
             Item rareBone = ItemFactory.createItem(ItemList.boneCollar, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_BONE, (byte) (Server.rand.nextInt(3)+ 1), null);
             Item shouldersPumpkin = ItemFactory.createItem(ItemList.shoulderPumpkinHalloween, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
             Item maskTrollHalloween = ItemFactory.createItem(ItemList.maskTrollHalloween, 50.0f + (Server.rand.nextFloat() * 49.9f), Materials.MATERIAL_LEATHER, (byte) (Server.rand.nextInt(3)), null);
-            Item candy = ItemFactory.createItem(ItemList.sweet, 10.0f + (Server.rand.nextFloat() * 89.9f), Materials.MATERIAL_VEGETARIAN, (byte) (Server.rand.nextInt(3)), null);
+            Item candy = ItemFactory.createItem(ItemList.sweet, 10.0f + (Server.rand.nextFloat() * 89.9f), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
 
             if (templateId == ScaryPumpkin.templateId) {
                 if (Constants.partsPumpkinRollToggle) {
@@ -52,7 +37,7 @@ public class CreatureLoot {
                             Item pumpkin = ItemFactory.createItem(ItemList.pumpkin, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
                             inv.insertItem(pumpkin, true);
                             inv.insertItem(candy, true);
-                            //comm.sendNormalServerMessage(message);
+                            
                             break;
                         case 1:
                             Item seedPumpkin = ItemFactory.createItem(ItemList.pumpkinSeed, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
@@ -62,13 +47,12 @@ public class CreatureLoot {
                             inv.insertItem(seedPumpkin, true);
                             inv.insertItem(seedPumpkin, true);
                             inv.insertItem(candy, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                         case 2:
                             Item carvedPumpkin = ItemFactory.createItem(ItemList.pumpkinHalloween, 20.0f + ((79.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
                             inv.insertItem(carvedPumpkin, true);
                             inv.insertItem(candy, true);
-                            //comm.sendNormalServerMessage(message);
+                            
                             break;
                     }
                 }
@@ -78,7 +62,6 @@ public class CreatureLoot {
                     switch (bonePumpkinRoll) {
                         case 0:
                             inv.insertItem(rareBone, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                     }
                 }
@@ -88,7 +71,6 @@ public class CreatureLoot {
                     switch (shouldersPumpkinRoll) {
                         case 0:
                             inv.insertItem(shouldersPumpkin, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                     }
                 }
@@ -98,7 +80,6 @@ public class CreatureLoot {
                     switch (masksPumpkinRoll) {
                         case 0:
                             inv.insertItem(maskTrollHalloween, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                     }
                 }
@@ -115,7 +96,6 @@ public class CreatureLoot {
                             inv.insertItem(branch, true);
                             inv.insertItem(branch, true);
                             inv.insertItem(candy, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                         case 1:
                             Item log = ItemFactory.createItem(ItemList.log, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_WOOD_OAK, (byte) 0, null);
@@ -125,13 +105,11 @@ public class CreatureLoot {
                             inv.insertItem(log, true);
                             inv.insertItem(log, true);
                             inv.insertItem(candy, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                         case 2:
                             Item acorn = ItemFactory.createItem(ItemList.acorn, 1.0f + ((99.9f) * Server.rand.nextFloat()), Materials.MATERIAL_VEGETARIAN, (byte) 0, null);
                             inv.insertItem(acorn, true);
                             inv.insertItem(candy, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                     }
                 }
@@ -141,7 +119,6 @@ public class CreatureLoot {
                     switch (boneTreeRoll) {
                         case 0:
                             inv.insertItem(rareBone, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                     }
                 }
@@ -151,7 +128,6 @@ public class CreatureLoot {
                     switch (shouldersTreeRoll) {
                         case 0:
                             inv.insertItem(shouldersPumpkin, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                     }
                 }
@@ -161,11 +137,22 @@ public class CreatureLoot {
                     switch (masksTreeRoll) {
                         case 0:
                             inv.insertItem(maskTrollHalloween, true);
-                            //comm.sendNormalServerMessage(message);
                             break;
                     }
                 }
 
+            }
+
+            else if (Constants.candyOnMonsters) {
+                if (creature.isMonster()) {
+                    inv.insertItem(candy, true);
+                }
+            }
+
+            else if (Constants.candyOnUndead) {
+                if (creature.isUndead()) {
+                    inv.insertItem(candy, true);
+                }
             }
 
         }catch(Exception e){

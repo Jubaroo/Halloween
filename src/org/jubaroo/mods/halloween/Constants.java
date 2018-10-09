@@ -24,6 +24,8 @@ class Constants {
     static boolean shouldersTreeRollToggle;
     static boolean masksPumpkinRollToggle;
     static boolean masksTreeRollToggle;
+    static boolean candyOnMonsters;
+
     static {
         logger = Logger.getLogger(Constants.class.getName());
         success = false;
@@ -44,6 +46,7 @@ class Constants {
         shouldersTreeRollToggle = false;
         masksPumpkinRollToggle = false;
         masksTreeRollToggle = false;
+        candyOnMonsters = false;
     }
 
 }
